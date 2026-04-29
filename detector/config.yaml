@@ -1,0 +1,25 @@
+log_file: /var/log/nginx/hng-access.log
+audit_log_file: /app/audit.log
+dashboard:
+  host: 0.0.0.0
+  port: 8080
+  refresh_seconds: 3
+sliding_window_seconds: 60
+baseline:
+  window_minutes: 30
+  recalc_interval_seconds: 60
+  min_points_for_hourly_slot: 300
+  floor_mean: 1.0
+  floor_stddev: 0.5
+thresholds:
+  zscore: 3.0
+  multiple: 5.0
+  error_surge_multiplier: 3.0
+  tightened_zscore: 2.0
+  tightened_multiple: 3.0
+blocking:
+  enabled: true
+  durations_seconds: [600, 1800, 7200]
+slack:
+  webhook_url: ""
+  timeout_seconds: 4
