@@ -12,7 +12,7 @@ This project deploys Nextcloud behind Nginx and runs a custom Python anomaly det
 - **Server IP:** `134.209.68.49`
 - **Metrics dashboard URL (domain/subdomain):** `http://detector.ajebodev.xyz:8080/`
 - **GitHub repo (public):** `https://github.com/fredrickray/hng-stage3-anomly-detector`
-- **Blog post URL:** `<PASTE_YOUR_PUBLISHED_BLOG_URL>`
+- **Blog post URL:** `https://dev.to/ajebordev/building-a-real-time-http-anomaly-detection-engine-for-nextcloud-with-python-nginx-and-iptables-5770`
 
 ## Why Python
 Python was chosen for fast iteration and readability under time constraints. The standard library plus lightweight packages made it easy to implement:
@@ -29,7 +29,7 @@ Python was chosen for fast iteration and readability under time constraints. The
 - global anomalies trigger Slack alert only
 - dashboard runs on detector service (`:8080`)
 
-Architecture diagram is stored at `docs/architecture.png` (ensure this is your final real diagram, not a placeholder).
+Architecture diagram is stored at `docs/architecture.png`.
 
 ## Repository Layout
 ```text
