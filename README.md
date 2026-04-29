@@ -9,10 +9,10 @@ This project deploys Nextcloud behind Nginx and runs a custom Python anomaly det
 - and serves a live metrics dashboard.
 
 ## Live Submission Details
-- **Server IP:** `<ADD_YOUR_SERVER_IP>`
-- **Metrics dashboard URL (domain/subdomain):** `http://<YOUR_METRICS_DOMAIN_OR_SUBDOMAIN>`
-- **GitHub repo (public):** `<ADD_REPO_URL>`
-- **Blog post URL:** `<ADD_BLOG_POST_URL>`
+- **Server IP:** `134.209.68.49`
+- **Metrics dashboard URL (domain/subdomain):** `http://detector.ajebodev.xyz:8080/`
+- **GitHub repo (public):** `https://github.com/fredrickray/hng-stage3-anomly-detector`
+- **Blog post URL:** `<PASTE_YOUR_PUBLISHED_BLOG_URL>`
 
 ## Why Python
 Python was chosen for fast iteration and readability under time constraints. The standard library plus lightweight packages made it easy to implement:
@@ -29,7 +29,7 @@ Python was chosen for fast iteration and readability under time constraints. The
 - global anomalies trigger Slack alert only
 - dashboard runs on detector service (`:8080`)
 
-Replace `docs/architecture.png` with your real architecture diagram before submission.
+Architecture diagram is stored at `docs/architecture.png` (ensure this is your final real diagram, not a placeholder).
 
 ## Repository Layout
 ```text
@@ -127,9 +127,11 @@ cd hng-stage3-anomly-detector
 
 3. Configure detector:
 ```bash
-cp detector/config.yaml detector/config.local.yaml
+nano detector/config.yaml
 ```
-Update Slack webhook and any thresholds in `detector/config.yaml`.
+Update the following in `detector/config.yaml`:
+- `slack.webhook_url`
+- optional threshold values (if tuning for testing)
 
 4. Start stack:
 ```bash
@@ -141,7 +143,8 @@ docker compose up -d --build
 docker compose ps
 docker compose logs -f detector
 curl http://<SERVER_IP>/
-curl http://<SERVER_IP>:8080/metrics.json
+curl http://detector.ajebodev.xyz:8080/
+curl http://detector.ajebodev.xyz:8080/metrics.json
 ```
 
 ## Required Screenshot Checklist
@@ -153,6 +156,15 @@ Put these in `screenshots/`:
 5. `Iptables-banned.png`
 6. `Audit-log.png`
 7. `Baseline-graph.png` (show at least two hourly slots with different means)
+
+## Submission Evidence Map
+- `Tool-running.png`: detector running and processing logs (`docker compose logs -f detector`)
+- `Ban-slack.png`: Slack message containing `[BAN]`
+- `Unban-slack.png`: Slack message containing `[UNBAN]`
+- `Global-alert-slack.png`: Slack message containing `[GLOBAL]`
+- `Iptables-banned.png`: output of `iptables -L -n` showing DROP rule
+- `Audit-log.png`: `detector/audit.log` containing `BAN`, `UNBAN`, `BASELINE`, `ALERT`
+- `Baseline-graph.png`: dashboard baseline section showing at least two hourly slots with different effective means
 
 ## Notes for Grading
 - Keep server online for full 12-hour grading window.
